@@ -38,14 +38,6 @@ pkg install -y nano sudo bash wget htop xorg slim xfce xfce4-pulseaudio-plugin t
 pkg install -y gnome-keyring xfce4-screenshooter-plugin shotwell atril-lite gnome-font-viewer mixer mixertui vlc qjackctl  
 pkg install -y baobab networkmgr v4l-utils v4l_compat webcamd pwcview sctd brut clamtk filezilla vscode firefox deadbeef
 
-## INSTALLS AUTOMOUNT AND FILESYSTEM SUPPORT
-echo ""
-echo "Enabling automount..."
-echo ""
-pkg install -y automount exfat-utils fusefs-exfat fusefs-ntfs fusefs-ext2 fusefs-hfsfuse fusefs-lkl fusefs-simple-mtpfs dsbmd dsbmc
-sysrc dsbmd_enable=YES
-echo ""
-
 ## ENABLES BASIC SYSTEM SERVICES
 echo "Enabling basic services"
 sysrc moused_enable="YES"
@@ -70,13 +62,6 @@ then
     echo ""
     echo "$user enabled"
 else fi
-
-## CONFIGURES AUTOMOUNT FOR THE REGULAR DESKTOP USER
-touch /usr/local/etc/automount.conf
-echo "USERUMOUNT=YES" >> /usr/local/etc/automount.conf
-echo "USER=$user" >> /usr/local/etc/automount.conf
-echo "FM='thunar'" >> /usr/local/etc/automount.conf
-echo "NICENAMES=YES" >> /usr/local/etc/automount.conf
 
 ## SPECIAL PERMISSIONS FOR USB DRIVES AND WEBCAM
 echo "perm    /dev/da0        0666" >> /etc/devfs.conf
@@ -138,10 +123,10 @@ echo ""
 mv /etc/sysctl.conf /etc/sysctl.conf.bk
 mv /boot/loader.conf /boot/loader.conf.bk
 mv /etc/login.conf /etc/login.conf.bk
-cd /etc/ && fetch https://raw.githubusercontent.com/Wamphyre/BSD-XFCE/main/sysctl.conf
-fetch https://raw.githubusercontent.com/Wamphyre/BSD-XFCE/main/login.conf
-fetch https://raw.githubusercontent.com/Wamphyre/BSD-XFCE/main/devfs.rules
-cd /boot/ && fetch https://raw.githubusercontent.com/Wamphyre/BSD-XFCE/main/loader.conf
+cd /etc/ && fetch https://github.com/lsime87/BSD-XFCE-INTEL-GRAPHICS/blob/main/sysctl.conf
+fetch https://github.com/lsime87/BSD-XFCE-INTEL-GRAPHICS/blob/main/loader.conf
+fetch https://github.com/lsime87/BSD-XFCE-INTEL-GRAPHICS/blob/main/devfs.rules
+cd /boot/ && fetch https://github.com/lsime87/BSD-XFCE-INTEL-GRAPHICS/blob/main/loader.conf
 sysrc devfs_system_ruleset="desktop"
 cd
 touch /etc/pf.conf
