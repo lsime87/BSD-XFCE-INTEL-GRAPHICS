@@ -28,7 +28,7 @@ Read the code before install, you would like to change some parameters (Nvidia d
 ## Installation (FreeBSD 13/13.*/14)
 
 ```
-git clone https://github.com/Wamphyre/BSD-XFCE && sh BSD-XFCE/xfce_desktop.sh
+git clone https://github.com/lsime87/BSD-XFCE-INTEL-GRAPHICS/blob/main/xfce_desktop_intel_drivers.sh
 ```
 ## Post-installation (macOS skinpack) <- Optional step **AFTER** reboot
 ```
